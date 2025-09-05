@@ -10,7 +10,7 @@ numpy
 
 # PDF Handling
 pypdf
-
+langchain-community
 # Web UI
 gradio
 
