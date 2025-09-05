@@ -1,0 +1,19 @@
+# Core Libraries
+langchain
+langchain-groq
+chromadb
+
+# Embeddings & ML
+sentence-transformers
+torch
+numpy
+
+# PDF Handling
+pypdf
+
+# Web UI
+gradio
+
+# Environment & Utilities
+python-dotenv
+requests
