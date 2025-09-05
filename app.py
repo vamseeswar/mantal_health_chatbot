@@ -1,6 +1,7 @@
-from langchain.embeddings import HuggingFaceBgeEmbeddings
-from langchain.document_loaders import PyPDFLoader, DirectoryLoader
-from langchain.vectorstores import Chroma
+# ================== Imports ==================
+from langchain_community.embeddings import HuggingFaceBgeEmbeddings
+from langchain_community.document_loaders import PyPDFLoader, DirectoryLoader
+from langchain_community.vectorstores import Chroma
 from langchain.chains import RetrievalQA
 from langchain.prompts import PromptTemplate
 from langchain.text_splitter import RecursiveCharacterTextSplitter
@@ -14,7 +15,7 @@ DATA_PATH = os.environ.get("DATA_PATH", "./data")
 CHROMA_DB_PATH = os.environ.get("CHROMA_DB_PATH", "./chroma_db")
 PORT = int(os.environ.get("PORT", 5000))
 
-# 🎨 Color themes
+# ================== Color Themes ==================
 color_themes = [
     {"bg": "#0d1117", "chat_bg": "#161b22", "user": "#00ff7f", "bot": "#00bfff"},
     {"bg": "#1e1e2f", "chat_bg": "#2b2d42", "user": "#ff7f50", "bot": "#40e0d0"},
@@ -65,10 +66,11 @@ def initialize_llm():
     )
 
 def create_vector_db():
-    if not os.path.exists(DATA_PATH):
-        os.makedirs(DATA_PATH)
-        raise FileNotFoundError(f"No PDFs found! Upload files into {DATA_PATH}")
-    
+    # Check if specific PDF exists
+    pdf_file = os.path.join(DATA_PATH, "mental_health_Document.pdf")
+    if not os.path.exists(pdf_file):
+        raise FileNotFoundError(f"No PDF found! Please upload 'mental_health_Document.pdf' into {DATA_PATH}")
+
     loader = DirectoryLoader(DATA_PATH, glob="*.pdf", loader_cls=PyPDFLoader)
     documents = loader.load()
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50)
