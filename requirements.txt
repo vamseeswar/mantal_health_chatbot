@@ -15,7 +15,7 @@ torch>=2.1.0
 
 # PDF loader
 PyPDF2>=3.0.1
-
+pypdf
 # Gradio for UI
 gradio>=3.48.0
 
